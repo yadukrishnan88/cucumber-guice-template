@@ -2,22 +2,20 @@ package com.home.pages;
 
 import com.google.inject.Inject;
 import com.home.baseutils.AbstractPage;
-import com.home.baseutils.World;
+import com.home.baseutils.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DemoBlazeHomePage extends AbstractPage {
     private final String demoBlazeUrl = "https://www.demoblaze.com/";
 
-    @Inject
-    private World world;
+    /*@Inject
+    private DriverFactory driverFactory;*/
 
     @Inject
-    public DemoBlazeHomePage(World world) {
-        super(world);
+    public DemoBlazeHomePage(DriverFactory driverFactory) {
+        super(driverFactory);
     }
 
     @FindBy(id = "navbarExample")
@@ -31,15 +29,6 @@ public class DemoBlazeHomePage extends AbstractPage {
     By password = By.id("loginpassword");
     By loginBtn = By.cssSelector("button.btn.btn-primary");
     By welcomeLabel = By.id("nameofuser");
-
-    /*@FindBy(id = "login2")
-    private WebElement loginLnk;
-
-    @FindBy(id = "loginusername")
-    private WebElement userId;
-
-    @FindBy(id = "loginpassword")
-    private WebElement password;*/
 
     public void visitDemoBlaze() {
         driver.get(demoBlazeUrl);
@@ -66,8 +55,7 @@ public class DemoBlazeHomePage extends AbstractPage {
     }
 
     public String getWelcomeText() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.invisibilityOf(loginModal));
+        waitForVisibilityOfElement(driver.findElement(welcomeLabel));
         return findElementInSection(topNavigationBar, welcomeLabel).getText();
     }
 }

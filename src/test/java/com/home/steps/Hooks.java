@@ -1,13 +1,13 @@
 package com.home.steps;
 
 import com.google.inject.Inject;
-import com.home.baseutils.World;
+import com.home.baseutils.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
 public class Hooks {
     @Inject
-    private World world;
+    private DriverFactory driverFactory;
 
     @Before
     public void setUp() {
@@ -16,6 +16,6 @@ public class Hooks {
 
     @After
     public void tearDown() {
-        world.driver.quit();
+        driverFactory.driver.quit();
     }
 }

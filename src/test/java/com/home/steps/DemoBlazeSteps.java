@@ -1,7 +1,7 @@
 package com.home.steps;
 
 import com.google.inject.Inject;
-import com.home.baseutils.World;
+import com.home.baseutils.DriverFactory;
 import com.home.pages.DemoBlazeHomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -11,11 +11,11 @@ import org.testng.Assert;
 
 public class DemoBlazeSteps {
 
-    private World world;
+    private DriverFactory driverFactory;
 
     @Inject
-    public DemoBlazeSteps(World world) {
-        this.world = world;
+    public DemoBlazeSteps(DriverFactory driverFactory) {
+        this.driverFactory = driverFactory;
     }
 
     @Inject
@@ -36,11 +36,11 @@ public class DemoBlazeSteps {
     public void iShouldSeeMessage(String text, String userName) {
         String welcomeText = demoBlazeHomePage.getWelcomeText();
         String expectedText = text + " " + userName;
-        Assert.assertTrue(expectedText.trim().equalsIgnoreCase(welcomeText), "Welcome Label Mismatches");
+        Assert.assertEquals(welcomeText.toLowerCase(), expectedText.toLowerCase(), "Welcome Label Mismatches");
     }
 
     @And("the page title should be {string}")
     public void thePageTitleShouldBe(String pageTitle) {
-        Assert.assertEquals(demoBlazeHomePage.getPageTitle(), pageTitle);
+        Assert.assertEquals(driverFactory.driver.getTitle(), pageTitle);
     }
 }
