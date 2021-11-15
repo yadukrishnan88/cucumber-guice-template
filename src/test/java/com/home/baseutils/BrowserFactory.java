@@ -13,9 +13,6 @@ public class BrowserFactory {
 
     public WebDriver createBrowserInstance() {
         String browserName = System.getProperty("browser");
-        if (browserName == null) {
-            browserName = "chrome";
-        }
         WebDriver driver;
         switch (browserName.trim().toLowerCase()) {
             case "firefox":

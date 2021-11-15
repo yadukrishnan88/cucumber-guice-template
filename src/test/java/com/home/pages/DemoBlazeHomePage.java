@@ -3,6 +3,7 @@ package com.home.pages;
 import com.google.inject.Inject;
 import com.home.baseutils.AbstractPage;
 import com.home.baseutils.DriverFactory;
+import com.home.baseutils.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,6 +33,7 @@ public class DemoBlazeHomePage extends AbstractPage {
 
     public void visitDemoBlaze() {
         driver.get(demoBlazeUrl);
+        Log.info("Navigated to " + demoBlazeUrl);
     }
 
     public DemoBlazeHomePage clickOnLoginLink() {
