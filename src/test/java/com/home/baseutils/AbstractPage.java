@@ -43,7 +43,6 @@ public abstract class AbstractPage {
         elementInfo = elementInfo.substring(elementInfo.indexOf("->"));
         String elementLocator = elementInfo.substring(elementInfo.indexOf(": "));
         elementLocator = elementLocator.substring(2, elementLocator.length() - 1);
-        System.out.println(elementInfo);
         WebElement refreshedWebElement = null;
         if (elementInfo.contains("-> link text:")) {
             refreshedWebElement = driver.findElement(By.linkText(elementLocator));
